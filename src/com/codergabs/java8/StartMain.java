@@ -2,6 +2,7 @@ package com.codergabs.java8;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class StartMain {
 
@@ -29,10 +30,17 @@ public class StartMain {
 			public boolean test(Person p) {
 				return p.getAge() >= 18 && p.getAge() <= 23;
 			}
+			public boolean test2(Person p) {
+				return p.getAge() >= 18 && p.getAge() <= 23;
+			}
 		});
 		//lamda expression
 		printPersonsOlderThan3(roster, p -> p.getAge() >= 18
 				&& p.getAge() <= 25);
+		
+		printPersonsOlderThan4(roster, p -> p.getAge() >= 18
+				&& p.getAge() <= 25);
+
 	}
 
 	public static void printPersonsOlderThan1(List<Person> roster, int age) {
@@ -68,4 +76,14 @@ public class StartMain {
 
 	}
 
+	public static void printPersonsOlderThan4(List<Person> roster,Predicate<Person> isAgeOk) {
+		System.out.println("printPersonsOlderThan4");
+		for (Person p : roster) {
+			if (isAgeOk.test(p)) {
+				p.printPerson();
+			}
+		}
+
+	}
+	
 }
